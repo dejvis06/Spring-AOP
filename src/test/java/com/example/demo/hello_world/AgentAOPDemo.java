@@ -8,14 +8,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AgentAOPDemo {
 
     @Test
-    void contextLoads() {
+    void test() {
         Agent target = new Agent();
         ProxyFactory pf = new ProxyFactory();
         pf.addAdvice(new AgentDecorator());
+        pf.addAdvice(new AgentDecorator1());
         pf.setTarget(target);
         Agent proxy = (Agent) pf.getProxy();
-        target.speak();
+        target.speak("Bond");
         System.err.println("");
-        proxy.speak();
+        proxy.speak("Bond");
     }
 }
